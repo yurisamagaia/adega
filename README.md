@@ -7,6 +7,7 @@
 
 ``` bash
 # clone this repo
+git clone https://github.com/yurisamagaia/adega.git
 
 # install dependencies
 npm install
