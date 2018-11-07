@@ -1,5 +1,7 @@
 {
   "name": "adega",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

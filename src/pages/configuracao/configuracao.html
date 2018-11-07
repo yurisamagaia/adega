@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Configurações</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let configuracao of configuracoes">
+    <ion-list-header margin-top><b>{{ configuracao.titulo }}</b></ion-list-header>
+    <button ion-item *ngFor="let item of configuracao.itens" (click)="openPage(item.componente)">
+      <ion-icon name="{{ item.icone }}" item-start></ion-icon>
+      {{ item.nome }}
+    </button>
+  </ion-list>
+  <ion-list>
+    <ion-list-header margin-top><b>EXPORTAR REGISTROS</b></ion-list-header>
+    <button ion-item (click)="exportar()">
+      <ion-icon name="download" item-start></ion-icon>
+      Exportar
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Uvas</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <ion-icon name="close" class="icon-size"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header margin-top>
+    <b>ADICIONAR NOVO TIPO DE UVA</b>
+  </ion-list-header>
+  <form (ngSubmit)="addCategoria()">
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="model.nome" name="nome" placeholder="Sangiovese, Várias uvas, Grenache..."></ion-input>
+        <button ion-button outline item-end icon-start [disabled]="!model.nome">
+          <ion-icon name="add"></ion-icon>
+          ADD
+        </button>
+      </ion-item>
+    </ion-list>
+  </form>
+  <ion-list>
+    <ion-list-header>
+      <b>LISTAGEM</b>
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let categoria of categorias">
+      <ion-item>
+        <ion-icon name="checkmark" small item-start></ion-icon>
+        {{ categoria.nome }}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeCategoria(categoria)">
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <div *ngIf="empty" padding text-center class="empty">
+      <ion-icon name="filing" class="icon-empty"></ion-icon>
+      <div>Nenhum registro encontrado</div>
+    </div>
+  </ion-list>
+</ion-content>

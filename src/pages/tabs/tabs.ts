@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+import { AdegaPage } from '../adega/adega';
+import { ProdutoPage } from '../produto/produto';
+import { ConfiguracaoPage } from '../configuracao/configuracao';
 
+@IonicPage()
 @Component({
+  selector: 'page-tabs',
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  adegaRoot = AdegaPage;
+  produtoRoot = ProdutoPage;
+  configuracaoRoot = ConfiguracaoPage;
 
-  constructor() {
+  constructor(public navCtrl: NavController) { }
 
-  }
 }

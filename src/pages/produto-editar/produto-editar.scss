@@ -1,0 +1,23 @@
+page-produto-editar {
+  .avatar {
+    width: 100px;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 5px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 0px 20px 0px #eaeaea;
+  }
+  .input-quantidade {
+    width: 80%;
+    height: 40px;
+    border: 1px solid #cdcdcd;
+    text-align: center;
+    border-radius: 5px;
+  }
+  .icons {
+    zoom: 2.3;
+  }
+  .required {
+    color: #f53d3d;
+  }
+}

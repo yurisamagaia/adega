@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Adega de Vinhos</ion-title>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar dark [(ngModel)]="primaryToolbarSearch" placeholder="Nome, Safra, País, Região, Uva, Vinícola, Fechamento..." showCancelButton cancelButtonText="Cancelar"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let produto of produtos">
+    <ion-card-header class="titulo">
+      {{ produto.nome }}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-4 text-center padding-top padding-bottom>
+          <img [src]="converteImagem(produto.foto ? produto.foto : avatar)" alt="Avatar" />
+        </ion-col>
+        <ion-col col-8>
+          <ion-list no-lines>
+            <ion-item *ngIf="produto.categoria_tipo">
+              <ion-icon name="wine" item-start></ion-icon>
+              <p>Tipo</p>
+              {{ produto.categoria_tipo }}
+            </ion-item>
+            <ion-item *ngIf="produto.categoria_pais">
+              <ion-icon name="globe" item-start></ion-icon>
+              <p>País</p>
+              {{ produto.categoria_pais }}
+            </ion-item>
+            <ion-item *ngIf="produto.categoria_uva">
+              <ion-icon name="leaf" item-start></ion-icon>
+              <p>Uva</p>
+              {{ produto.categoria_pais }}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <div>
+        <button ion-button outline block color="primary" (click)="openFicha(produto.id)">Ficha Completa</button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="empty" padding text-center margin-top class="empty">
+    <ion-icon name="filing" class="icon-empty"></ion-icon>
+    <div>Nenhum registro encontrado</div>
+  </div>
+</ion-content>

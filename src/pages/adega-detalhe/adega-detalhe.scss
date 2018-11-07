@@ -1,0 +1,28 @@
+page-adega-detalhe {
+  .bg-box {
+    background-image: url('../assets/imgs/vinicola.png');
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .avatar {
+    border-radius: 30px;
+    height: 250px;
+    z-index: 10;
+    background-color: #fff;
+    margin: auto;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+  }
+  .box {
+    margin-top: 110px;
+  }
+  .descricao {
+    background-color: #fff;
+    line-height: 23px;
+  }
+  ion-note {
+    color: #550331 !important;
+  }
+}

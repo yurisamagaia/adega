@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes do Vinho</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <ion-icon name="close" class="icon-size"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="bg-box">
+    <img [src]="converteImagem(model.foto)" class="avatar" alt="Avatar" />
+  </div>
+  <div class="box">
+    <h2 text-center>{{ model.nome }}</h2>
+    <div padding>
+      <ion-segment [(ngModel)]="vinho">
+        <ion-segment-button value="ficha">
+          Ficha Técnica
+        </ion-segment-button>
+        <ion-segment-button value="sobre" [disabled]="!model.descricao">
+          Sobre o Vinho
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="vinho">
+      <ion-list *ngSwitchCase="'ficha'">
+        <ion-item *ngIf="model.categoria_tipo">
+          <ion-icon name='wine' item-start></ion-icon>
+          Tipo
+          <ion-note item-end>
+            {{ model.categoria_tipo }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.safra">
+          <ion-icon name='leaf' item-start></ion-icon>
+          Safra
+          <ion-note item-end>
+            {{ model.safra }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.categoria_pais">
+          <ion-icon name='globe' item-start></ion-icon>
+          País
+          <ion-note item-end>
+            {{ model.categoria_pais }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.regiao">
+          <ion-icon name='pin' item-start></ion-icon>
+          Região
+          <ion-note item-end>
+            {{ model.regiao }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.categoria_uva">
+          <ion-icon name='leaf' item-start></ion-icon>
+          Uva
+          <ion-note item-end>
+            {{ model.categoria_uva }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.teor_alcoolico">
+          <ion-icon name='stats' item-start></ion-icon>
+          Teor alcoólico
+          <ion-note item-end>
+            {{ model.teor_alcoolico }}%
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.fechamento">
+          <ion-icon name='cube' item-start></ion-icon>
+          Tipo de fechamento
+          <ion-note item-end>
+            {{ model.fechamento }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.vinicola">
+          <ion-icon name='home' item-start></ion-icon>
+          Vinícola
+          <ion-note item-end>
+            {{ model.vinicola }}
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.volume">
+          <ion-icon name='beaker' item-start></ion-icon>
+          Volume
+          <ion-note item-end>
+            {{ model.volume }}ML
+          </ion-note>
+        </ion-item>
+        <ion-item *ngIf="model.validade">
+          <ion-icon name='calendar' item-start></ion-icon>
+          Consumir até
+          <ion-note item-end>
+            {{ model.validade }}
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngSwitchCase="'sobre'">
+        <div padding class="descricao">
+          {{ model.descricao }}
+        </div>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

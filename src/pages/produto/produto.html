@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Vinhos</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openFiltro()">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar dark (ionInput)="filtrarProdutos($event)" [(ngModel)]="textoBuscar" placeholder="Nome, Safra, País, Região, Uva, Vinícola, Fechamento..." showCancelButton cancelButtonText="Cancelar"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item-sliding *ngFor="let produto of produtos" #item>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="converteImagem(produto.foto ? produto.foto : avatar)" class="avatar" alt="Avatar" />
+        </ion-avatar>
+        <h2>{{ produto.nome }}</h2>
+        <ion-row>
+          <ion-col text-left>
+            <p>{{ produto.estoque }}un</p>
+          </ion-col>
+          <ion-col text-right>
+            <p class="ativo" *ngIf="produto.ativo === 1">Ativo</p>
+            <p class="inativo" *ngIf="produto.ativo === 0">Inativo</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="editarProduto(produto.id, item)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="removerProduto(produto)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <div *ngIf="empty" padding text-center class="empty">
+    <ion-icon name="filing" class="icon-empty"></ion-icon>
+    <div>Nenhum registro encontrado</div>
+  </div>
+  <ion-fab center bottom>
+    <button ion-fab color="primary" (click)="adicionar()"><ion-icon name="add" class="icon-size"></ion-icon></button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Editar Vinho</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding text-center>
+    <div>
+      <img [src]="converteImagem(model.foto ? model.foto : avatar)" class="avatar" alt="Avatar" />
+    </div>
+    <div>Selecionar imagem</div>
+    <button ion-button icon-start color="primary" outline small (click)="fotoCamera()">
+      <ion-icon name="camera"></ion-icon>
+      CÂMERA
+    </button>
+    <button ion-button icon-start color="primary" outline small (click)="fotoGaleria()">
+      <ion-icon name="images"></ion-icon>
+      GALERIA
+    </button>
+    <button ion-button color="danger" outline small (click)="fotoRemover()" *ngIf="model.foto">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </div>
+  <ion-item>
+    <ion-row>
+      <ion-col text-center>Estoque</ion-col>
+    </ion-row>
+    <ion-row padding-top padding-bottom>
+      <ion-col text-right>
+        <ion-icon name="remove-circle" class="icons" (click)="removerQuantidade()" color="danger"></ion-icon>
+      </ion-col>
+      <ion-col text-center>
+        <input type="number" [(ngModel)]="model.estoque" name="estoque" class="input-quantidade" />
+      </ion-col>
+      <ion-col text-left>
+        <ion-icon name="add-circle" class="icons" (click)="adicionarQuantidade()" color="success"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-item>
+    <ion-label><span class="required">*</span>Nome:</ion-label>
+    <ion-input type="text" [(ngModel)]="model.nome" name="nome" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><span class="required">*</span>Tipo</ion-label>
+    <ion-select [(ngModel)]="model.id_categoria_tipo">
+      <ion-option value="{{ tipo.id }}" *ngFor="let tipo of categoriasTipo">{{ tipo.nome }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label><span class="required">*</span>País</ion-label>
+    <ion-select [(ngModel)]="model.id_categoria_pais">
+      <ion-option value="{{ pais.id }}" *ngFor="let pais of categoriasPais">{{ pais.nome }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Região:</ion-label>
+    <ion-input type="text" [(ngModel)]="model.regiao" name="regiao" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><span class="required">*</span>Uva</ion-label>
+    <ion-select [(ngModel)]="model.id_categoria_uva">
+      <ion-option value="{{ uva.id }}" *ngFor="let uva of categoriasUva">{{ uva.nome }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label><span class="required">*</span>Safra (ano):</ion-label>
+    <ion-input type="number" [(ngModel)]="model.safra" name="safra" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Teor Alcoólico (%):</ion-label>
+    <ion-input type="number" [(ngModel)]="model.teor_alcoolico" name="teor_alcoolico" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de Fechamento:</ion-label>
+    <ion-input type="text" [(ngModel)]="model.fechamento" name="fechamento" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Vinícola:</ion-label>
+    <ion-input type="text" [(ngModel)]="model.vinicola" name="vinicola" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Volume (ML):</ion-label>
+    <ion-input type="number" [(ngModel)]="model.volume" name="volume" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Consumir até:</ion-label>
+    <ion-input type="number" [(ngModel)]="model.validade" name="validade" clearInput="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Ativo</ion-label>
+    <ion-toggle [(ngModel)]="model.ativo" name="ativo" color="success"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Descrição:</ion-label>
+    <ion-textarea [(ngModel)]="model.descricao" name="descricao" clearInput="true"></ion-textarea>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <div padding>
+    <button ion-button type="button" (click)="salvar()" block [disabled]="!model.nome || !model.id_categoria_tipo || !model.id_categoria_pais || !model.id_categoria_uva || !model.safra">Salvar</button>
+  </div>
+</ion-footer>
