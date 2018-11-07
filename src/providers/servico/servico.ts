@@ -12,7 +12,7 @@ export class ServicoProvider {
 
   exportar() {
     return new Promise(resolve => {
-      this.produtoProvider.getAll(null, null).then((result: any[]) => {
+      this.produtoProvider.getAllExport().then((result: any[]) => {
         this.http.post(this.API_URL, JSON.stringify(result)).subscribe((res: any) => {
           resolve(res.json());
         }, (error) => {

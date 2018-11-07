@@ -48,7 +48,10 @@ export class ConfiguracaoPage {
       },{
         text: 'Exportar',
         handler: () => {
-          let loading = this.loadingCtrl.create();
+          let loading = this.loadingCtrl.create({
+            content: 'Exportando...',
+            enableBackdropDismiss: true
+          });
           loading.present();
           this.servicoProvider.exportar().then((result) => {
             let show = this.alertCtrl.create({

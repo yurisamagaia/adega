@@ -107,6 +107,25 @@ export class ProdutoProvider {
       }).catch((e) => console.error(JSON.stringify(e)));
     }).catch((e) => console.error(JSON.stringify(e)));
   }
+
+  public getAllExport() {
+    return this.dbProvider.getDB().then((db: SQLiteObject) => {
+      let sql = 'SELECT p.*, ct.nome as categoria_tipo, cp.nome as categoria_pais, cu.nome as categoria_uva FROM produto p INNER JOIN categoria_tipo ct ON p.id_categoria_tipo = ct.id INNER JOIN categoria_pais cp ON p.id_categoria_pais = cp.id INNER JOIN categoria_uva cu ON p.id_categoria_uva = cu.id';
+
+      return db.executeSql(sql, null).then((data: any) => {
+        if (data.rows.length > 0) {
+          let produtos: any[] = [];
+          for (var i = 0; i < data.rows.length; i++) {
+            var produto = data.rows.item(i);
+            produtos.push(produto);
+          }
+          return produtos;
+        } else {
+          return [];
+        }
+      }).catch((e) => console.error(JSON.stringify(e)));
+    }).catch((e) => console.error(JSON.stringify(e)));
+  }
 }
 
 export class Produto {
